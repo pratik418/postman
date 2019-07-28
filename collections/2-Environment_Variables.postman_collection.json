@@ -1,0 +1,99 @@
+{
+	"info": {
+		"_postman_id": "e4e8c436-b2ec-4c6f-b170-ec6ed7cdad1b",
+		"name": "2-Environment Variables",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login-via Environment",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d14a3cb0-a00c-493c-b2d5-27acbfa0438c",
+						"exec": [
+							"pm.test(\"Verify Login API Health \", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"",
+							"pm.test(\"Verify Json Content for Login\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    var status =jsonData.status;",
+							"    var id = jsonData.data.user.id;",
+							"    var name = jsonData.data.user.name;",
+							"    pm.globals.set(\"token\",jsonData.data.token);",
+							"    pm.environment.set(\"userName\",jsonData.data.user.name);",
+							"    console.log(pm.environment.get(\"userName\"));",
+							"",
+							"",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "5eab8053-73d4-4793-a9e7-1219f3ddabc5",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\": \"jatinvsharma@gmail.com\",\n\t\"password\": \"123123123\"\n}"
+				},
+				"url": {
+					"raw": "http://{{URL}}:3000/user/signin",
+					"protocol": "http",
+					"host": [
+						"{{URL}}"
+					],
+					"port": "3000",
+					"path": [
+						"user",
+						"signin"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "fb703670-9de3-41ec-89c3-a51c5f140bdb",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "c985ad3d-7f9b-47c9-bca0-7ce848975691",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

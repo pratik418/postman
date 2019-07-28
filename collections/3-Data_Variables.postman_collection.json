@@ -1,0 +1,145 @@
+{
+	"info": {
+		"_postman_id": "a3b9d8b8-6228-4764-aeb1-8085cd86399a",
+		"name": "3-Data Variables",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login- via Data variable",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d14a3cb0-a00c-493c-b2d5-27acbfa0438c",
+						"exec": [
+							"pm.test(\"Verify Login API Health \", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"",
+							"pm.test(\"Verify Response status value\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    var status =jsonData.status;",
+							"    if(pm.iterationData.get('testcase')==\"valid\")",
+							"    ",
+							"    {",
+							"    pm.expect(jsonData.status).to.eql(pm.iterationData.get('status'));",
+							"    }",
+							"   ",
+							"    else",
+							"    {",
+							"         pm.expect(jsonData.status).to.eql(\"error\");",
+							"    }",
+							"        ",
+							"});",
+							"",
+							"",
+							"pm.test(\"Check the id of user\", function () {",
+							"    var jsonData = pm.response.json();",
+							"     if(pm.iterationData.get('testcase')==\"valid\")",
+							"    {",
+							"    pm.expect(jsonData.data.user.id).to.eql(pm.iterationData.get('id'));",
+							"    }",
+							"    else",
+							"    {",
+							"        console.log(pm.iterationData.get('testcase'));",
+							"        pm.expect(jsonData.status).to.eql(\"error\");",
+							"",
+							"    }",
+							"});",
+							"",
+							"pm.test(\"Check the name of user\", function () {",
+							"    var jsonData = pm.response.json();",
+							"   ",
+							"     if(pm.iterationData.get('testcase')==\"valid\")",
+							"         {",
+							"            var name = jsonData.data.user.name;",
+							"            console.log(pm.iterationData.get('testcase'));",
+							"            pm.expect(name).to.eql(pm.iterationData.get('fullName'));",
+							"        }",
+							"",
+							"    else",
+							"        {",
+							"         pm.expect(jsonData.status).to.eql(\"error\");",
+							"        }",
+							"});",
+							"",
+							"",
+							"pm.test(\"Check the role of user\", function () {",
+							"    var jsonData = pm.response.json();",
+							"     if(pm.iterationData.get('testcase')==\"valid\")",
+							"        {",
+							"            var role = jsonData.data.user.role;",
+							"            pm.expect(role).to.eql(pm.iterationData.get('role'));",
+							"    ",
+							"        }",
+							"    else",
+							"        {",
+							"         pm.expect(jsonData.status).to.eql(\"error\");",
+							"        }",
+							"});",
+							"",
+							"pm.test(\"Check the mobile number\", function () {",
+							"    var jsonData = pm.response.json();",
+							"   ",
+							"     if(pm.iterationData.get('testcase')==\"valid\")",
+							"        {",
+							"        var mobile = jsonData.data.user.mobile_number;",
+							"        pm.expect(mobile).to.eql(pm.iterationData.get('mobile'));",
+							"        ",
+							"        }",
+							"    else",
+							"         {",
+							"                 pm.expect(jsonData.status).to.eql(\"error\");",
+							"         }",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "5eab8053-73d4-4793-a9e7-1219f3ddabc5",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\": \"{{userEmail}}\",\n\t\"password\": \"{{password}}\"\n}"
+				},
+				"url": {
+					"raw": "http://142.93.219.181:3000/user/signin",
+					"protocol": "http",
+					"host": [
+						"142",
+						"93",
+						"219",
+						"181"
+					],
+					"port": "3000",
+					"path": [
+						"user",
+						"signin"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

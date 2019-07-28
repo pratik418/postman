@@ -1,0 +1,29 @@
+{
+	"id": "21107fdd-6e14-477c-837c-09a5f3c30c40",
+	"values": [
+		{
+			"key": "URL",
+			"value": "142.93.219.181",
+			"enabled": true
+		},
+		{
+			"key": "myName",
+			"value": "Jatin Sharma",
+			"enabled": true
+		},
+		{
+			"key": "myVariable",
+			"value": "12332435466",
+			"enabled": true
+		},
+		{
+			"key": "token",
+			"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJsYXN0X21vZGlmaWVkIjoxNTY0Mjk2MTE3MTcwLCJleHBpcmVfYXQiOjE1Njk0ODAxMTcxNzEsInBheWxvYWQiOnsiaWQiOjIsIm5hbWUiOiJKYXRpbiBTaGFybWEiLCJlbWFpbCI6ImphdGludnNoYXJtYUBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJtb2JpbGVfbnVtYmVyIjoiMTIzMTIzMTIzMSJ9fQ.FDe-PD2M99YH2xamOfVH_Y14UaVgGmJh7Em1cvltVRc",
+			"enabled": true
+		}
+	],
+	"name": "My Workspace Globals",
+	"_postman_variable_scope": "globals",
+	"_postman_exported_at": "2019-07-28T12:46:54.009Z",
+	"_postman_exported_using": "Postman/7.2.2"
+}

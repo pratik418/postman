@@ -1,0 +1,289 @@
+{
+	"info": {
+		"_postman_id": "1db848d2-1272-4f7b-874f-128ac7bdc4d3",
+		"name": "Advance REST API CRUD Application ",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d14a3cb0-a00c-493c-b2d5-27acbfa0438c",
+						"exec": [
+							"pm.test(\"Verify Login API Health \", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"",
+							"pm.test(\"Verify Json Content for Login\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    var status =jsonData.status;",
+							"    var id = jsonData.data.user.id;",
+							"    var name = jsonData.data.user.name;",
+							"    pm.environment.set(\"token\",jsonData.data.token)",
+							"    pm.expect(name).to.eql(\"Jatin\");",
+							"    pm.expect(id).to.eql(\"5cd56b5cd278f890d12b1fa0\");",
+							"",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "5eab8053-73d4-4793-a9e7-1219f3ddabc5",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\": \"jatinvsharma@gmail.com\",\n\t\"password\": \"123123123\"\n}"
+				},
+				"url": {
+					"raw": "http://142.93.219.181:3000/user/signin",
+					"protocol": "http",
+					"host": [
+						"142",
+						"93",
+						"219",
+						"181"
+					],
+					"port": "3000",
+					"path": [
+						"user",
+						"signin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add product",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"prod_name\": \"{{prodname}}\",\n\t\"prod_desc\": \"Hello world product\",\n\t\"prod_price\": 1000\n}"
+				},
+				"url": {
+					"raw": "http://142.93.219.181:3000/api/v1/products",
+					"protocol": "http",
+					"host": [
+						"142",
+						"93",
+						"219",
+						"181"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Product by ID",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{token}}"
+					}
+				],
+				"url": {
+					"raw": "http://142.93.219.181:3000/api/v1/products/5cd2fc314c7de0189648f365",
+					"protocol": "http",
+					"host": [
+						"142",
+						"93",
+						"219",
+						"181"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"products",
+						"5cd2fc314c7de0189648f365"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Product",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"prod_name\": \"Hello world123\",\n\t\"prod_desc\": \"Hello world product 456\",\n\t\"prod_price\": 999\n}"
+				},
+				"url": {
+					"raw": "http://142.93.219.181:3000/api/v1/products/5cd2f9c95358f912fcc8f679",
+					"protocol": "http",
+					"host": [
+						"142",
+						"93",
+						"219",
+						"181"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"products",
+						"5cd2f9c95358f912fcc8f679"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Product",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"prod_name\": \"Boat Earphone\",\n\t\"prod_desc\": \"Worlds best wireless earphones\",\n\t\"prod_price\": 2999\n}"
+				},
+				"url": {
+					"raw": "http://142.93.219.181:3000/api/v1/products/5cd2fc314c7de0189648f365",
+					"protocol": "http",
+					"host": [
+						"142",
+						"93",
+						"219",
+						"181"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"products",
+						"5cd2fc314c7de0189648f365"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search Product",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{etoken}}"
+					}
+				],
+				"url": {
+					"raw": "http://142.93.219.181:3000/api/v1/products/search/boat",
+					"protocol": "http",
+					"host": [
+						"142",
+						"93",
+						"219",
+						"181"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"products",
+						"search",
+						"boat"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "{{token}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "c538070f-739e-42b0-a54c-6b95167d4e60",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "7adee7c2-6ff9-4340-a455-88ccec2f1401",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

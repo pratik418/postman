@@ -1,0 +1,122 @@
+{
+	"info": {
+		"_postman_id": "4b9e3418-03ed-42fc-bc9f-51a25ee4354b",
+		"name": "4-Local Variables",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login- via Local variable",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d14a3cb0-a00c-493c-b2d5-27acbfa0438c",
+						"exec": [
+							"pm.test(\"Verify Login API Health \", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"",
+							"pm.test(\"Verify Response status value\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    var status =jsonData.status;",
+							"    pm.expect(jsonData.status).to.eql(\"success\");",
+							"});",
+							"",
+							"",
+							"pm.test(\"Check the id of user\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.data.user.id).to.eql(2);",
+							"});",
+							"",
+							"pm.test(\"Check the name of user\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    var name = jsonData.data.user.name;",
+							"    pm.expect(name).to.eql(\"Jatin Sharma\");",
+							"});",
+							"",
+							"",
+							"pm.test(\"Check the role of user\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    var role = jsonData.data.user.role;",
+							"    pm.expect(role).to.eql(\"admin\");",
+							"});",
+							"",
+							"pm.test(\"Check the mobile number\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    var mobile = jsonData.data.user.mobile_number;",
+							"    pm.expect(mobile).to.eql(\"1231231231\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "5eab8053-73d4-4793-a9e7-1219f3ddabc5",
+						"exec": [
+							"pm.variables.set(\"userName1\",\"jatinvsharma@gmail.com\")",
+							"pm.variables.set(\"password\",\"123123123\")"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\t\"email\": \"{{userName1}}\",\n\t\"password\": \"{{password}}\"\n}"
+				},
+				"url": {
+					"raw": "http://142.93.219.181:3000/user/signin",
+					"protocol": "http",
+					"host": [
+						"142",
+						"93",
+						"219",
+						"181"
+					],
+					"port": "3000",
+					"path": [
+						"user",
+						"signin"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "1b625115-c9e1-4dff-8a5d-41611ac41614",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "2e838214-7e97-490c-9bb9-ca5a1f218973",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

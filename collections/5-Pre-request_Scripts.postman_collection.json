@@ -1,0 +1,81 @@
+{
+	"info": {
+		"_postman_id": "445838e6-816c-4d70-a6cc-a23c4f32c6b2",
+		"name": "5-Pre-request Scripts Example",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login-Pre Request Script",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d14a3cb0-a00c-493c-b2d5-27acbfa0438c",
+						"exec": [
+							"pm.test(\"Verify Login API Health \", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"",
+							"pm.test(\"Verify Json Content for Login\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    var status =jsonData.status;",
+							"    var id = jsonData.data.user.id;",
+							"    var name = jsonData.data.user.name;",
+							"    pm.globals.set(\"token\",jsonData.data.token)",
+							"    pm.environment.set(\"userName\",jsonData.data.user.name)",
+							"    pm.globals.clear();",
+							"  ",
+							"",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "5eab8053-73d4-4793-a9e7-1219f3ddabc5",
+						"exec": [
+							"pm.variables.set(\"userName1\",\"jatinvsharma@gmail.com\")",
+							"pm.variables.set(\"password\",\"123123123\")"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\t\"email\": \"{{userEmail1}}\",\n\t\"password\": \"{{password}}\"\n}"
+				},
+				"url": {
+					"raw": "http://142.93.219.181:3000/user/signin",
+					"protocol": "http",
+					"host": [
+						"142",
+						"93",
+						"219",
+						"181"
+					],
+					"port": "3000",
+					"path": [
+						"user",
+						"signin"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

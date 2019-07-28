@@ -1,0 +1,4 @@
+userEmail,password,role,mobile,fullName,status,testcase,id
+jatinvsharma@gmail.com,123123123,admin,"1231231231",Jatin Sharma,success,valid,2
+jatinvsharma@gmail.com,123123124,na,na,na,na,invalid,na
+admin1245@gmail.com,'123123123,na,na,na,na,invalid,na
